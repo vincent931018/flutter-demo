@@ -26,6 +26,8 @@ class _DetailState extends State<Detail> {
 
   	String name;
 
+  	String count = "1";
+
 	@override
 	void initState() {
 		super.initState();
@@ -109,6 +111,16 @@ class _DetailState extends State<Detail> {
 							},
 							child: new Icon(Icons.add),
 						),
+                        new Text(count),
+                        new FlatButton(
+                            // Attach the `callback` to the `onPressed` attribute
+                            onPressed: () {
+                                setState(() {
+                                  count = count + "1";
+                                });
+                            },
+                            child: new Icon(Icons.add),
+                        ),
                 	]
             	),
         	),

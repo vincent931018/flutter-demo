@@ -13,11 +13,13 @@ class Layout extends StatefulWidget {
     Layout({
         bool showAppBar = true,
         bool showBottomBar = false,
+        bool isTabComponent = false,
         Widget child,
         String title = "首页",
         String appBarBackgroundColor = ColorsLibrary.themeColor,
-    })  : this.showAppBar = showAppBar,
+    })  :   this.showAppBar = showAppBar,
             this.showBottomBar = showBottomBar,
+            this.isTabComponent = isTabComponent,
             this.child = child,
             this.title = title,
             this.appBarBackgroundColor = appBarBackgroundColor;
@@ -25,6 +27,8 @@ class Layout extends StatefulWidget {
     final bool showAppBar;
 
     final bool showBottomBar;
+
+    final bool isTabComponent;
 
     final Widget child;
 
@@ -34,12 +38,13 @@ class Layout extends StatefulWidget {
 
     @override
     _LayoutState createState() => new _LayoutState(
-        showAppBar, showBottomBar, child, title, appBarBackgroundColor);
+        showAppBar, showBottomBar, isTabComponent, child, title, appBarBackgroundColor);
 }
 
 class _LayoutState extends State<Layout> {
-    _LayoutState(bool showAppBar, bool showBottomBar, Widget child, String title,
+    _LayoutState(bool showAppBar, bool showBottomBar, bool isTabComponent, Widget child, String title,
         String appBarBackgroundColor) {
+        this._isTabComponent = isTabComponent;
         this._showAppBar = showAppBar;
         this._showBottomBar = showBottomBar;
         this._child = child;
@@ -56,6 +61,11 @@ class _LayoutState extends State<Layout> {
     是否展示底部导航栏部分
      */
     bool _showBottomBar;
+
+    /*
+    是否 tabBar 组件
+     */
+    bool _isTabComponent;
 
     /*
     内容部分
@@ -84,8 +94,8 @@ class _LayoutState extends State<Layout> {
                 backgroundColor: Color(ColorUtils.fromHexString(_appBarBackgroundColor)),
                 centerTitle: true,
             ) : null,
-//            body: _child == null ? new Material() : _child,
-            body: new PageView.builder(
+//            body: ,
+            body: _isTabComponent ? new PageView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 onPageChanged: _pageChange,
                 controller: _pageController,
@@ -99,7 +109,7 @@ class _LayoutState extends State<Layout> {
                     }
                 },
                 itemCount: 3,
-            ),
+            ) : _child == null ? new Material() : _child,
             bottomNavigationBar:
             _showBottomBar ? new CustomTabBar(_pageController) : null,
         );

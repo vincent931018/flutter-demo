@@ -38,6 +38,7 @@ class HomePageState extends State<HomePage> {
         return new Layout(
             showAppBar: true,
             showBottomBar: true,
+            isTabComponent: true,
             child: new Container(
                 width: MediaQuery.of(context).size.width,
                 child: new Column(
