@@ -2,15 +2,16 @@
 
 A new Flutter application.
 
-## Getting Started
+## 功能清单
 
-This project is a starting point for a Flutter application.
+- redux 全局状态管理（多个 reducer 合并）
 
-A few resources to get you started if this is your first Flutter project:
+- 静态资源集中处理（图片、颜色、icon）
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- http 异步请求处理（网络请求拦截器）
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+- 业务组件、展示组件分类
+
+- 路由handle处理封装 抽离文件
+
+- 工具函数提取
