@@ -21,6 +21,8 @@ dependencies:
     sdk: flutter
   dio: 2.1.7
   fluro: ^1.5.0
+  redux: ^3.0.0
+  flutter_redux: ^0.5.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -69,5 +71,9 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
-  # For details regarding fonts from package dependencies,
+  # For details regarding fonts from Ipackage dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Iconfont
+      fonts:
+        - asset: fonts/iconfont.ttf

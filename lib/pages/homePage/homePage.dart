@@ -1,41 +1,95 @@
 import 'package:flutter/material.dart';
-import '../../utils/colorUtils.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_app/components/display/layout.dart';
 import '../../utils/routerUtils.dart';
+import '../../actions/homePage/operationAction.dart';
+import '../../assets/images.dart';
+import '../../assets/icons.dart';
 
-class HomePageComponent extends StatefulWidget {
+class HomePage extends StatefulWidget {
     @override
-    State createState() => new HomePageComponentState();
+    State createState() => new HomePageState();
 }
 
-class HomePageComponentState extends State<HomePageComponent> {
+class HomePageState extends State<HomePage> {
+
+    @override
+    void initState() {
+        super.initState();
+    }
+    
+    @override
+    void didUpdateWidget(HomePage oldWidget) {
+        super.didUpdateWidget(oldWidget);
+    }
+
+    @override
+    void deactivate() {
+        super.deactivate();
+    }
+
+    @override
+    void dispose() {
+        super.dispose();
+    }
+
     @override
     Widget build(BuildContext context) {
-        return Scaffold(
-            appBar: AppBar(
-                title: Text('主页'),
-                backgroundColor: Color(ColorUtils.fromHexString("#00C3AA")),
-            ),
-            body: new Material(
-                child: new Center(
-                    child: new FlatButton(
-                        onPressed: () {
-                            _toDetail();
-                        }, 
-                        child: new Image.asset(
-                            'images/kid.jpg',
-                            width: 200,
-                            height: 200,
-                            fit: BoxFit.contain,
+        return new Layout(
+            showAppBar: true,
+            showBottomBar: true,
+            child: new Container(
+                width: MediaQuery.of(context).size.width,
+                child: new Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                        new FlatButton(
+                            onPressed: () {
+                                _toDetail();
+                            },
+                            child: new Image.asset(
+                                ImagesLibrary.testPicture,
+                                width: 200,
+                                height: 200,
+                                fit: BoxFit.contain,
+                            ),
                         ),
-                    )
+                        new StoreConnector(
+                            converter: (store) => store.state.homePageState.counter.toString(),
+                            builder: (context, count) {
+                                return new Text(
+                                    count,
+                                    style: Theme.of(context).textTheme.display1,
+                                );
+                            }),
+                        new StoreConnector(
+                            converter: (store) {
+                                // Return a `VoidCallback`, which is a fancy name for a function
+                                // with no parameters. It only dispatches an Increment action.
+                                return () => store.dispatch(OperationAction(OperationActionTypes.increase));
+                            },
+                            builder: (context, callback) {
+                                return new FloatingActionButton(
+                                    // Attach the `callback` to the `onPressed` attribute
+                                    onPressed: callback,
+                                    tooltip: 'Increment',
+                                    child: new Icon(
+                                        IconsLibrary.icon_add,
+                                        size: 50,
+                                        color: const Color.fromRGBO(0, 0, 0, 0.7),
+                                    ),
+                                    backgroundColor: Color.fromRGBO(255, 255, 255, 0),
+                                );
+                            },
+                        ),
+                    ]
                 ),
             )
         );
     }
-    
+
     void _toDetail() {
-        RouterUtils.navigateTo(context, "/detail?params=123&name=12").then((res) {
-            print("页面返回");
-        });
+        RouterUtils.navigateTo(context, "/detail?name=32145");
     }
 }

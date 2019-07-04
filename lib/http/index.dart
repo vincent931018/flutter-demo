@@ -4,7 +4,7 @@ import './loadingCtrl.dart';
 import './exceptionCtrl.dart';
 
 // 链式调用标识
-var chainFlag = false;
+bool chainFlag = false;
 // 接口调用计数器
 ApiCounter apiCounter = new ApiCounter();
 // loading控制器
@@ -94,12 +94,12 @@ class HttpClient {
                     apiCounter.resetApiCount();
                     loadingCtrl.hideLoading();
                     chainFlag = false;
-                    return new Future.error({
+                    return Future.error({
                         "code": 9999,
                         "msg": "链式请求异常"
                     });
                 } else {
-                    return new Future.error({
+                    return Future.error({
                         "code": 9999,
                         "msg": "请求异常"
                     });
@@ -107,7 +107,7 @@ class HttpClient {
             } else {
                 exceptionCtrl.showException();
             }
-            return new Future.error({
+            return Future.error({
                 "code": 9999,
                 "msg": "请求异常"
             });

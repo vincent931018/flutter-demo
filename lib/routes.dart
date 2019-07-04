@@ -13,17 +13,17 @@ class Routes {
             handlerFunc: (BuildContext context, Map<String, List<String>> params) {
                 print("ROUTE WAS NOT FOUND !!!");
                 // 页面不存在 返回首页
-                return new HomePageComponent();
+                return new HomePage();
             });
 
         router.define(homePage, handler: new Handler(
             handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-                return new HomePageComponent();
+                return new HomePage();
             }));
 
         router.define(detail, handler: new Handler(
             handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-                return new DetailComponent(name: params["name"]?.first);
+                return new Detail(params);
             }));
     }
 }
