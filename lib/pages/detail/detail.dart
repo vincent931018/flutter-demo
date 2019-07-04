@@ -3,10 +3,11 @@ import 'package:flutter_redux/flutter_redux.dart';
 import '../../http/index.dart';
 import '../../components/display/layout.dart';
 import '../../actions/detail/operationAction.dart';
+import '../../utils/routerUtils.dart';
 
 class Detail extends StatefulWidget {
 
-  	Detail(Map params) : this.params = params;
+  	Detail({Map params}) : this.params = params;
 
   	final Map params;
 
@@ -18,7 +19,7 @@ class Detail extends StatefulWidget {
 class _DetailState extends State<Detail> {
 
   	_DetailState(Map params) {
-    	this.name = params["name"]?.first;
+    	this.name = params["name"];
   	}
 
   	String pageTitle = "详情";
@@ -97,10 +98,16 @@ class _DetailState extends State<Detail> {
 								return new FloatingActionButton(
 									// Attach the `callback` to the `onPressed` attribute
 									onPressed: callback,
-									tooltip: 'Increment',
 									child: new Icon(Icons.add),
 								);
 							},
+						),
+						new FlatButton(
+							// Attach the `callback` to the `onPressed` attribute
+							onPressed: () {
+								RouterUtils.pop(context, result: {"params": "123"});
+							},
+							child: new Icon(Icons.add),
 						),
                 	]
             	),

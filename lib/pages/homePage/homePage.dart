@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_app/components/display/layout.dart';
-import '../../utils/routerUtils.dart';
 import '../../actions/homePage/operationAction.dart';
+import '../../utils/routerUtils.dart';
 import '../../assets/images.dart';
 import '../../assets/icons.dart';
 
@@ -46,7 +46,7 @@ class HomePageState extends State<HomePage> {
                     children: [
                         new FlatButton(
                             onPressed: () {
-                                _toDetail();
+                                _toDetail(context);
                             },
                             child: new Image.asset(
                                 ImagesLibrary.testPicture,
@@ -89,7 +89,7 @@ class HomePageState extends State<HomePage> {
         );
     }
 
-    void _toDetail() {
-        RouterUtils.navigateTo(context, "/detail?name=32145");
+    void _toDetail(BuildContext context) {
+        RouterUtils.push(context, Routes.detail, params: {"name": "c"});
     }
 }

@@ -1,41 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:fluro/fluro.dart';
-import 'package:flutter_app/routes.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import './utils/routerUtils.dart';
 import 'store.dart';
+import 'pages/homePage/homePage.dart';
+import 'pages/detail/detail.dart';
 
-class AppComponent extends StatefulWidget {
-    @override
-    State createState() {
-        return new AppComponentState();
-    }
-}
+class AppComponent extends StatelessWidget {
 
-class AppComponentState extends State<AppComponent> {
-
+    /*
+    初始化redux store
+     */
     final Store store = createStore();
-
-    AppComponentState() {
-        final router = new Router();
-        Routes.configureRoutes(router);
-        RouterUtils.router = router;
-    }
 
     @override
     Widget build(BuildContext context) {
-        final app = new MaterialApp(
-            title: 'Flutter App',
-            debugShowCheckedModeBanner: false,
-            theme: new ThemeData(
-                primarySwatch: Colors.blue,
-            ),
-            onGenerateRoute: RouterUtils.router.generator,
-        );
         return new StoreProvider(
             store: store,
-            child: app
+            child: new MaterialApp(
+                title: 'Flutter App',
+                home: HomePage(),
+                routes: <String, WidgetBuilder> {
+                    '/detail': (BuildContext context) => Detail(),
+                },
+            )
         );
     }
 }

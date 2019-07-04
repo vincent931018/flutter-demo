@@ -4,20 +4,19 @@
  * @Website https://www.caowencheng.com
  */
 import 'package:flutter/material.dart';
+
+import '../../assets/colors.dart';
 import '../../components/display/tabBar.dart';
 import '../../utils/colorUtils.dart';
-import '../../assets/colors.dart';
 
 class Layout extends StatefulWidget {
-
     Layout({
         bool showAppBar = true,
         bool showBottomBar = false,
         Widget child,
         String title = "首页",
         String appBarBackgroundColor = ColorsLibrary.themeColor,
-    })
-        :   this.showAppBar = showAppBar,
+    })  : this.showAppBar = showAppBar,
             this.showBottomBar = showBottomBar,
             this.child = child,
             this.title = title,
@@ -26,31 +25,20 @@ class Layout extends StatefulWidget {
     final bool showAppBar;
 
     final bool showBottomBar;
-    
+
     final Widget child;
-    
+
     final String title;
-    
+
     final String appBarBackgroundColor;
 
     @override
     _LayoutState createState() => new _LayoutState(
-        showAppBar,
-        showBottomBar,
-        child,
-        title,
-        appBarBackgroundColor
-    );
-
+        showAppBar, showBottomBar, child, title, appBarBackgroundColor);
 }
 
 class _LayoutState extends State<Layout> {
-
-    _LayoutState(
-        bool showAppBar,
-        bool showBottomBar,
-        Widget child,
-        String title,
+    _LayoutState(bool showAppBar, bool showBottomBar, Widget child, String title,
         String appBarBackgroundColor) {
         this._showAppBar = showAppBar;
         this._showBottomBar = showBottomBar;
@@ -68,7 +56,7 @@ class _LayoutState extends State<Layout> {
     是否展示底部导航栏部分
      */
     bool _showBottomBar;
-    
+
     /*
     内容部分
      */
@@ -88,10 +76,9 @@ class _LayoutState extends State<Layout> {
 
     var _pageController = new PageController(initialPage: 0);
 
-
     @override
     Widget build(BuildContext context) {
-        return Scaffold(
+        return new Scaffold(
             appBar: _showAppBar ? AppBar(
                 title: new Text(_title),
                 backgroundColor: Color(ColorUtils.fromHexString(_appBarBackgroundColor)),
@@ -100,9 +87,9 @@ class _LayoutState extends State<Layout> {
 //            body: _child == null ? new Material() : _child,
             body: new PageView.builder(
                 physics: NeverScrollableScrollPhysics(),
-                onPageChanged:_pageChange,
+                onPageChanged: _pageChange,
                 controller: _pageController,
-                itemBuilder: (BuildContext context,int index){
+                itemBuilder: (BuildContext context, int index) {
                     if (index == 0) {
                         return _child == null ? new Material() : _child;
                     } else if (index == 1) {
@@ -113,10 +100,14 @@ class _LayoutState extends State<Layout> {
                 },
                 itemCount: 3,
             ),
-            bottomNavigationBar: _showBottomBar ? new CustomTabBar(_pageController) : null,
+            bottomNavigationBar:
+            _showBottomBar ? new CustomTabBar(_pageController) : null,
         );
     }
 
+    /*
+    tabBar 页面切换
+     */
     void _pageChange(int index) {
         setState(() {
             if (index == 0) {

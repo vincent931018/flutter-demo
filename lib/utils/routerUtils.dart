@@ -1,17 +1,82 @@
 /*
- * Created by caowencheng on 2019-07-03
+ * Created by caowencheng on 2019-07-04
  * @Email 845982120@qq.com
  * @Website https://www.caowencheng.com
  */
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import '../pages/homePage/homePage.dart';
+import '../pages/detail/detail.dart';
+
+enum Routes {
+	homePage,
+	detail
+}
 
 class RouterUtils {
 
-    static Router router;
+	/*
+	获取路由页面实例
+	 */
+	static MaterialPageRoute getRouteByName(Routes routeName, { Map params }) {
+		return new MaterialPageRoute(builder: (BuildContext context){
+			switch (routeName) {
+				case Routes.homePage:
+					return new HomePage();
+				case Routes.detail:
+					return new Detail(params: params);
+				default:
+					return new HomePage();
+			}
+		});
+	}
 
-    static Future navigateTo(BuildContext context, String path) async {
-        return router.navigateTo(context, path, transition: TransitionType.native);
-    }
+	/*
+	获取路由页面名称
+	 */
+	static String getRouteName(Routes routeName) {
+		switch (routeName) {
+			case Routes.homePage:
+				return "/";
+			case Routes.detail:
+				return "/detail";
+			default:
+				return "/";
+		}
+	}
+
+	/*
+	页面前进
+	 */
+	static void push(BuildContext context, Routes routeName, { Map params }) {
+		Navigator.push(context, getRouteByName(routeName, params: params));
+	}
+
+	/*
+	页面前进 根据路由名称
+	 */
+	static void pushNamed(BuildContext context, Routes routeName) {
+		Navigator.pushNamed(context, getRouteName(routeName));
+	}
+
+	/*
+	页面后退
+	 */
+	static void pop(BuildContext context, { Map result }) {
+		Navigator.pop(context, result);
+	}
+
+	/*
+	页面清栈 并跳转到指定页
+	 */
+	static void pushAndRemoveUntil(BuildContext context, Routes routeName, { Map params }) {
+		Navigator.pushAndRemoveUntil(context, getRouteByName(routeName, params: params), ModalRoute.withName(getRouteName(routeName)));
+	}
+
+	/*
+	页面清栈 并根据名称跳转到指定页
+	 */
+	static void pushNamedAndRemoveUntil(BuildContext context, Routes routeName, { Map params }) {
+		Navigator.pushNamedAndRemoveUntil(context, getRouteName(routeName), ModalRoute.withName(getRouteName(routeName)));
+	}
 
 }
