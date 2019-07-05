@@ -78,15 +78,12 @@ class HttpClient {
                     loadingCtrl.hideLoading();
                 }
             }
-            return Future.error({
-                "code": 9999,
-                "msg": "请求异常"
-            });
+            return Future.error(e);
         }).catchError((e) {
             if (httpOptions["chainReject"]) {
                 return Future.error({
-                    "code": 9999,
-                    "msg": "链式请求中断"
+                    "code": e.response == null ? 9999 : (e.response.statusCode == null ? 9999 : e.response.statusCode),
+                    "msg": e.message
                 });
             }
             if (!httpOptions["effectMainProcess"]) {
@@ -95,21 +92,21 @@ class HttpClient {
                     loadingCtrl.hideLoading();
                     chainFlag = false;
                     return Future.error({
-                        "code": 9999,
-                        "msg": "链式请求异常"
+                        "code": e.response == null ? 9999 : (e.response.statusCode == null ? 9999 : e.response.statusCode),
+                        "msg": e.message
                     });
                 } else {
                     return Future.error({
-                        "code": 9999,
-                        "msg": "请求异常"
+                        "code": e.response == null ? 9999 : (e.response.statusCode == null ? 9999 : e.response.statusCode),
+                        "msg": e.message
                     });
                 }
             } else {
                 exceptionCtrl.showException();
             }
             return Future.error({
-                "code": 9999,
-                "msg": "请求异常"
+                "code": e.response == null ? 9999 : (e.response.statusCode == null ? 9999 : e.response.statusCode),
+                "msg": e.message
             });
         });
     }

@@ -5,7 +5,7 @@
  */
 import 'package:redux/redux.dart';
 import 'package:flutter_app/state/homePageState.dart';
-import '../actions/homePage/operationAction.dart';
+import 'package:flutter_app/actions/homePage/operationAction.dart';
 
 final homePageReducer = combineReducers<HomePageState>([
 	TypedReducer<HomePageState, OperationAction>(_increase)

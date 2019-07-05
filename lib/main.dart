@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'components/display/bottomNavigation.dart';
+import 'package:flutter_app/pages/detailPage.dart';
 import 'store.dart';
-import 'pages/homePage/homePage.dart';
-import 'pages/detail/detail.dart';
 
 class AppComponent extends StatelessWidget {
 
@@ -18,9 +18,10 @@ class AppComponent extends StatelessWidget {
             store: store,
             child: new MaterialApp(
                 title: 'Flutter App',
-                home: HomePage(),
+                debugShowCheckedModeBanner: false,
+                home: BottomNavigationWidget(),
                 routes: <String, WidgetBuilder> {
-                    '/detail': (BuildContext context) => Detail(),
+                    '/detailPage': (BuildContext context) => DetailPage(),
                 },
             )
         );

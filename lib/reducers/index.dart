@@ -4,12 +4,12 @@
  * @Website https://www.caowencheng.com
  */
 import 'package:flutter_app/state/index.dart';
-import 'detailReducer.dart';
+import 'detailPageReducer.dart';
 import 'homePageReducer.dart';
 
 
 AppState appReducer(AppState state, dynamic action) =>
 	new AppState(
-		detailState: detailReducer(state.detailState, action),
+		detailState: detailPageReducer(state.detailState, action),
 		homePageState: homePageReducer(state.homePageState, action)
 	);

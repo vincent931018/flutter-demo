@@ -4,12 +4,12 @@
  * @Website https://www.caowencheng.com
  */
 import 'package:flutter/material.dart';
-import '../pages/homePage/homePage.dart';
-import '../pages/detail/detail.dart';
+import 'package:flutter_app/pages/homePage.dart';
+import 'package:flutter_app/pages/detailPage.dart';
 
 enum Routes {
 	homePage,
-	detail
+	detailPage
 }
 
 class RouterUtils {
@@ -22,8 +22,8 @@ class RouterUtils {
 			switch (routeName) {
 				case Routes.homePage:
 					return new HomePage();
-				case Routes.detail:
-					return new Detail(params: params);
+				case Routes.detailPage:
+					return new DetailPage(params: params);
 				default:
 					return new HomePage();
 			}
@@ -37,8 +37,8 @@ class RouterUtils {
 		switch (routeName) {
 			case Routes.homePage:
 				return "/";
-			case Routes.detail:
-				return "/detail";
+			case Routes.detailPage:
+				return "/detailPage";
 			default:
 				return "/";
 		}

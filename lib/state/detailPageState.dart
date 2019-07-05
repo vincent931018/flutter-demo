@@ -3,15 +3,15 @@
  * @Email 845982120@qq.com
  * @Website https://www.caowencheng.com
  */
-class DetailState {
+class DetailPageState {
 	int counter;
 
-	DetailState({
+	DetailPageState({
 		this.counter: 0
 	});
 
-	factory DetailState.initial() {
-		return new DetailState(
+	factory DetailPageState.initial() {
+		return new DetailPageState(
 			counter: 0
 		);
 	}

@@ -1,4 +1,4 @@
-import '../config/index.dart';
+import 'package:flutter_app/config/index.dart';
 
 // 接口调用 baseURL mode 0:调试 1:测试 2:准生产 3:生产
 String getBaseUrl(num version) {

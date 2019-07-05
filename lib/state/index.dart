@@ -3,11 +3,11 @@
  * @Email 845982120@qq.com
  * @Website https://www.caowencheng.com
  */
-import 'detailState.dart';
+import 'detailPageState.dart';
 import 'homePageState.dart';
 
 class AppState {
-	final DetailState detailState;
+	final DetailPageState detailState;
 	final HomePageState homePageState;
 	AppState({
 		this.detailState,
@@ -16,7 +16,7 @@ class AppState {
 
 	factory AppState.initial(){
 		return AppState(
-			detailState: DetailState.initial(),
+			detailState: DetailPageState.initial(),
 			homePageState: HomePageState.initial()
 		);
 	}
