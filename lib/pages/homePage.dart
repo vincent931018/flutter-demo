@@ -15,10 +15,10 @@ import 'package:flutter_app/assets/icons.dart';
 
 class HomePage extends StatefulWidget {
     @override
-    State createState() => new HomePageState();
+    State createState() => new _HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> {
 
     @override
     Widget build(BuildContext context) {
@@ -42,6 +42,12 @@ class HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                            new Image.network(
+                                "https://segmentfault.com/img/bVbubxL?w=1000&h=1000",
+                                width: 300,
+                                height: 100,
+                                fit: BoxFit.contain,
+                            ),
                             new FlatButton(
                                 onPressed: () {
                                     _toDetail(context);
@@ -83,6 +89,6 @@ class HomePageState extends State<HomePage> {
     }
 
     void _toDetail(BuildContext context) {
-        RouterUtils.push(context, Routes.detailPage, params: {"name": "c12"});
+        RouterUtils.push(context, Routes.detailPage);
     }
 }

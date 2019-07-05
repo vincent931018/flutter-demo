@@ -17,12 +17,12 @@ class BottomNavigationWidget extends StatefulWidget {
 	final int currentIndex;
 
 	@override
-	State<StatefulWidget> createState() => BottomNavigationWidgetState(currentIndex);
+	State<StatefulWidget> createState() => _BottomNavigationWidgetState(currentIndex);
 }
 
-class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
+class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
 
-	BottomNavigationWidgetState(currentIndex) {
+	_BottomNavigationWidgetState(currentIndex) {
 		this._currentIndex = currentIndex;
 	}
 

@@ -4,6 +4,7 @@ import 'package:flutter_app/http/index.dart';
 import 'package:flutter_app/actions/detailPage/operationAction.dart';
 import 'package:flutter_app/utils/routerUtils.dart';
 import 'package:flutter_app/utils/colorUtils.dart';
+import 'package:flutter_app/utils/commonUtils.dart';
 import 'package:flutter_app/assets/colors.dart';
 
 class DetailPage extends StatefulWidget {
@@ -100,6 +101,13 @@ class _DetailPageState extends State<DetailPage> {
                                     });
                                 },
                                 child: new Icon(Icons.add),
+                            ),
+                            new FlatButton(
+                                // Attach the `callback` to the `onPressed` attribute
+                                onPressed: () {
+                                    CommonUtils.showToast("???");
+                                },
+                                child: new Text("toast"),
                             ),
                         ]
                     ),

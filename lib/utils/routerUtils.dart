@@ -11,7 +11,7 @@ enum Routes {
 	homePage,
 	detailPage,
 	coursePage,
-	myPage
+	myPage,
 }
 
 class RouterUtils {
@@ -57,7 +57,7 @@ class RouterUtils {
 	/*
 	页面前进
 	 */
-	static void push(BuildContext context, Routes routeName, { Map params }) {
+	static void push(BuildContext context, Routes routeName, { Map params = const {} }) {
 		Navigator.push(context, getRouteByName(routeName, params: params));
 	}
 
