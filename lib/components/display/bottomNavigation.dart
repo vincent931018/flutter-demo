@@ -11,12 +11,23 @@ import 'package:flutter_app/utils/colorUtils.dart';
 import 'package:flutter_app/assets/colors.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
+
+	BottomNavigationWidget({int currentIndex = 0}) : this.currentIndex = currentIndex;
+
+	final int currentIndex;
+
 	@override
-	State<StatefulWidget> createState() => BottomNavigationWidgetState();
+	State<StatefulWidget> createState() => BottomNavigationWidgetState(currentIndex);
 }
 
 class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
-	int _currentIndex = 0;
+
+	BottomNavigationWidgetState(currentIndex) {
+		this._currentIndex = currentIndex;
+	}
+
+	int _currentIndex;
+
 	List<Widget> list = List();
 
 	@override

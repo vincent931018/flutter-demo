@@ -4,12 +4,14 @@
  * @Website https://www.caowencheng.com
  */
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/homePage.dart';
+import 'package:flutter_app/components/display/bottomNavigation.dart';
 import 'package:flutter_app/pages/detailPage.dart';
 
 enum Routes {
 	homePage,
-	detailPage
+	detailPage,
+	coursePage,
+	myPage
 }
 
 class RouterUtils {
@@ -21,11 +23,15 @@ class RouterUtils {
 		return new MaterialPageRoute(builder: (BuildContext context){
 			switch (routeName) {
 				case Routes.homePage:
-					return new HomePage();
+					return new BottomNavigationWidget(currentIndex: 0);
 				case Routes.detailPage:
 					return new DetailPage(params: params);
+				case Routes.coursePage:
+					return new BottomNavigationWidget(currentIndex: 1);
+				case Routes.myPage:
+					return new BottomNavigationWidget(currentIndex: 2);
 				default:
-					return new HomePage();
+					return new BottomNavigationWidget(currentIndex: 0);
 			}
 		});
 	}
@@ -36,11 +42,15 @@ class RouterUtils {
 	static String getRouteName(Routes routeName) {
 		switch (routeName) {
 			case Routes.homePage:
-				return "/";
+				return "/homePage";
 			case Routes.detailPage:
 				return "/detailPage";
+			case Routes.coursePage:
+				return "/coursePage";
+			case Routes.myPage:
+				return "/mypage";
 			default:
-				return "/";
+				return "/homePage";
 		}
 	}
 
