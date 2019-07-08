@@ -4,8 +4,8 @@ import 'package:flutter_app/http/index.dart';
 import 'package:flutter_app/actions/detailPage/operationAction.dart';
 import 'package:flutter_app/utils/routerUtils.dart';
 import 'package:flutter_app/utils/colorUtils.dart';
-import 'package:flutter_app/utils/commonUtils.dart';
 import 'package:flutter_app/assets/colors.dart';
+import 'package:flutter_app/components/display/showToast.dart';
 
 class DetailPage extends StatefulWidget {
 
@@ -105,7 +105,7 @@ class _DetailPageState extends State<DetailPage> {
                             new FlatButton(
                                 // Attach the `callback` to the `onPressed` attribute
                                 onPressed: () {
-                                    CommonUtils.showToast("???");
+                                    Toast.show(context, "123");
                                 },
                                 child: new Text("toast"),
                             ),

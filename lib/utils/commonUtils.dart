@@ -5,23 +5,15 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter_app/utils/colorUtils.dart';
+import 'package:flutter_app/components/display/showToast.dart';
 
 class CommonUtils {
 
     /*
      * 展示toast
      */
-    static void showToast(String message, { int duration = 2000 }) {
-        Fluttertoast.showToast(
-            msg: message,
-            toastLength: Toast.LENGTH_LONG,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIos: 2,
-            backgroundColor: Color.fromRGBO(0, 0, 0, 0.7),
-            textColor: Color(ColorUtils.fromHexString("#ffffff"))
-        );
+    static void showToast(BuildContext context, String message) {
+        Toast.show(context, message);
     }
 
 }
