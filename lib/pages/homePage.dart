@@ -89,6 +89,8 @@ class _HomePageState extends State<HomePage> {
     }
 
     void _toDetail(BuildContext context) {
-        RouterUtils.push(context, Routes.detailPage);
+        RouterUtils.push(context, Routes.detailPage, params: {
+            "name": "334"
+        });
     }
 }

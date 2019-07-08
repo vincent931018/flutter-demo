@@ -4,16 +4,29 @@
  * @Website https://www.caowencheng.com
  */
 
-import 'package:flutter/material.dart';
-import 'package:flutter_app/components/display/showToast.dart';
+import 'package:flutter_app/components/display/globalContext.dart';
 
 class CommonUtils {
 
     /*
      * 展示toast
      */
-    static void showToast(BuildContext context, String message) {
-        Toast.show(context, message);
+    static void showToast(String message, { bool mask = false }) {
+        globalShowToast(message, mask);
+    }
+
+    /*
+     * 展示loading
+     */
+    static void showLoading({ bool mask = false }) {
+        globalShowLoading(mask);
+    }
+
+    /*
+     * 隐藏loading
+     */
+    static void hideLoading() {
+        globalHideLoading();
     }
 
 }

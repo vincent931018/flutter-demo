@@ -1,13 +1,12 @@
+import 'package:flutter_app/utils/commonUtils.dart';
+
 class LoadingCtrl {
-    // 显示loading
+
     showLoading() {
-        // TODO
-        print("显示loading");
+        CommonUtils.showLoading(mask: true);
     }
 
-    // 隐藏loading
     hideLoading() {
-        // TODO
-        print("隐藏loading");
+        CommonUtils.hideLoading();
     }
 }

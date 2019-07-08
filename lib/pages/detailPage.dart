@@ -4,8 +4,8 @@ import 'package:flutter_app/http/index.dart';
 import 'package:flutter_app/actions/detailPage/operationAction.dart';
 import 'package:flutter_app/utils/routerUtils.dart';
 import 'package:flutter_app/utils/colorUtils.dart';
+import 'package:flutter_app/utils/commonUtils.dart';
 import 'package:flutter_app/assets/colors.dart';
-import 'package:flutter_app/components/display/showToast.dart';
 
 class DetailPage extends StatefulWidget {
 
@@ -14,19 +14,13 @@ class DetailPage extends StatefulWidget {
   	final Map params;
 
   	@override
-  	_DetailPageState createState() => new _DetailPageState(params);
+  	_DetailPageState createState() => new _DetailPageState();
 
 }
 
 class _DetailPageState extends State<DetailPage> {
 
-  	_DetailPageState(Map params) {
-    	this.name = params["name"];
-  	}
-
   	String pageTitle = "详情";
-
-  	String name;
 
   	String count = "1";
 
@@ -44,23 +38,14 @@ class _DetailPageState extends State<DetailPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                            new Text(name == null ? "xixi" : name),
-                            new IconButton(
-                                icon: new Icon(Icons.menu),
-                                tooltip: 'Navigation menu',
-                                onPressed: () {
-                                    setState(() {
-                                        name = "456";
-                                    });
-                                }, // null 会禁用 button
-                            ),
+                            new Text("params:${widget.params["name"] == null ? "xixi" : widget.params["name"]}"),
                             new FlatButton(onPressed: () {
                                 HttpClient.post("/home/queryHomePageInfo", {
                                     "uid": 1554194145097
                                 }).then((res) {
-                                    print("res:$res");
+                                    CommonUtils.showToast("res:$res");
                                 }).catchError((err) {
-                                    print("err:$err");
+                                    CommonUtils.showToast("err:$err");
                                 });
                             }, child: new Text("接口请求")),
                             new StoreConnector(
@@ -105,9 +90,23 @@ class _DetailPageState extends State<DetailPage> {
                             new FlatButton(
                                 // Attach the `callback` to the `onPressed` attribute
                                 onPressed: () {
-                                    Toast.show(context, "123");
+                                    CommonUtils.showToast("123");
                                 },
                                 child: new Text("toast"),
+                            ),
+                            new FlatButton(
+                                // Attach the `callback` to the `onPressed` attribute
+                                onPressed: () {
+                                    CommonUtils.showLoading();
+                                },
+                                child: new Text("loading"),
+                            ),
+                            new FlatButton(
+                                // Attach the `callback` to the `onPressed` attribute
+                                onPressed: () {
+                                    CommonUtils.hideLoading();
+                                },
+                                child: new Text("hideLoading"),
                             ),
                         ]
                     ),

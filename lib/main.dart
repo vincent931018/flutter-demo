@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'components/display/bottomNavigation.dart';
+import 'package:flutter_app/components/display/bottomNavigation.dart';
 import 'package:flutter_app/pages/detailPage.dart';
-import 'store.dart';
+import 'package:flutter_app/store.dart';
+import 'package:flutter_app/components/display/globalContext.dart';
 
 class AppComponent extends StatelessWidget {
 
@@ -16,16 +17,18 @@ class AppComponent extends StatelessWidget {
     Widget build(BuildContext context) {
         return new StoreProvider(
             store: store,
-            child: new MaterialApp(
-                title: 'Flutter App',
-                debugShowCheckedModeBanner: false,
-                home: BottomNavigationWidget(),
-                routes: <String, WidgetBuilder> {
-                    '/homePage': (BuildContext context) => BottomNavigationWidget(),
-                    '/detailPage': (BuildContext context) => DetailPage(),
-                    '/coursePage': (BuildContext context) => BottomNavigationWidget(currentIndex: 1),
-                    '/myPage': (BuildContext context) => BottomNavigationWidget(currentIndex: 2),
-                },
+            child: GlobalContext(
+                child: new MaterialApp(
+                    title: 'Flutter App',
+                    debugShowCheckedModeBanner: false,
+                    home: BottomNavigationWidget(),
+                    routes: <String, WidgetBuilder> {
+                        '/homePage': (BuildContext context) => BottomNavigationWidget(),
+                        '/detailPage': (BuildContext context) => DetailPage(),
+                        '/coursePage': (BuildContext context) => BottomNavigationWidget(currentIndex: 1),
+                        '/myPage': (BuildContext context) => BottomNavigationWidget(currentIndex: 2),
+                    },
+                )
             )
         );
     }

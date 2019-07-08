@@ -7,7 +7,6 @@
 import 'package:flutter/material.dart';
 
 class Toast {
-
     static ToastView preToast;
 
     static show(BuildContext context, String msg) {
@@ -26,17 +25,15 @@ class Toast {
             vsync: overlayState,
             duration: Duration(milliseconds: 250),
         );
-        var opacityAnim1 = new Tween(begin: 0.0, end: 1.0).animate(controllerShowAnim);
+        var opacityAnim1 =
+        new Tween(begin: 0.0, end: 1.0).animate(controllerShowAnim);
         var controllerCurvedShowOffset = new CurvedAnimation(
-            parent: controllerShowOffset,
-            curve: _BounceOutCurve._()
-        );
-        var offsetAnim = new Tween(begin: 30.0, end: 0.0).animate(controllerCurvedShowOffset);
+            parent: controllerShowOffset, curve: _BounceOutCurve._());
+        var offsetAnim =
+        new Tween(begin: 30.0, end: 0.0).animate(controllerCurvedShowOffset);
         var opacityAnim2 = new Tween(begin: 1.0, end: 0.0).animate(controllerHide);
 
-        OverlayEntry overlayEntry;
-
-        overlayEntry = new OverlayEntry(builder: (context) {
+        OverlayEntry overlayEntry = new OverlayEntry(builder: (context) {
             return ToastWidget(
                 opacityAnim1: opacityAnim1,
                 opacityAnim2: opacityAnim2,
@@ -58,38 +55,34 @@ class Toast {
 
     static LayoutBuilder buildToastLayout(String msg) {
         return LayoutBuilder(builder: (context, constraints) {
-            return IgnorePointer(
-                ignoring: true,
-                child: Container(
-                    child: Material(
-                        color: Colors.white.withOpacity(0),
+            return Container(
+                child: Material(
+                    color: Colors.white.withOpacity(0),
+                    child: Container(
                         child: Container(
-                            child: Container(
-                                child: Text(
-                                    "${msg}",
-                                    style: TextStyle(color: Colors.white),
-                                ),
-                                decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.6),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(5),
-                                    ),
-                                ),
-                                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                            child: Text(
+                                msg,
+                                style: TextStyle(color: Colors.white),
                             ),
-                            margin: EdgeInsets.only(
-                                bottom: constraints.biggest.height * 0.15,
-                                left: constraints.biggest.width * 0.2,
-                                right: constraints.biggest.width * 0.2,
+                            decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.6),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(5),
+                                ),
                             ),
+                            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        ),
+                        margin: EdgeInsets.only(
+                            bottom: constraints.biggest.height * 0.25,
+                            left: constraints.biggest.width * 0.2,
+                            right: constraints.biggest.width * 0.2,
                         ),
                     ),
-                    alignment: Alignment.bottomCenter,
                 ),
+                alignment: Alignment.bottomCenter,
             );
         });
     }
-
 }
 
 class ToastView {
@@ -125,7 +118,8 @@ class ToastWidget extends StatelessWidget {
     final Animation<double> opacityAnim2;
     final Animation<double> offsetAnim;
 
-    ToastWidget({this.child, this.offsetAnim, this.opacityAnim1, this.opacityAnim2});
+    ToastWidget(
+        {this.child, this.offsetAnim, this.opacityAnim1, this.opacityAnim2});
 
     @override
     Widget build(BuildContext context) {
