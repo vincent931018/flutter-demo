@@ -24,6 +24,10 @@ dependencies:
   # 全局状态管理
   redux: ^3.0.0
   flutter_redux: ^0.5.2
+  # 数值处理
+  decimal: ^0.3.0
+  # json model
+  json_annotation: ^2.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -32,6 +36,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # 自动生成Model (flutter packages pub run build_runner build)
+  json_serializable: ^2.0.0
+  build_runner: ^1.0.0
 
 
 # For information on the generic Dart part of this file, see the

@@ -5,6 +5,7 @@ import 'package:flutter_app/actions/detailPage/operationAction.dart';
 import 'package:flutter_app/utils/routerUtils.dart';
 import 'package:flutter_app/utils/colorUtils.dart';
 import 'package:flutter_app/utils/commonUtils.dart';
+import 'package:flutter_app/utils/logUtils.dart';
 import 'package:flutter_app/assets/colors.dart';
 
 class DetailPage extends StatefulWidget {

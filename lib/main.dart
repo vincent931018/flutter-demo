@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_app/components/display/bottomNavigation.dart';
-import 'package:flutter_app/pages/detailPage.dart';
+import 'package:flutter_app/utils/logUtils.dart';
+import 'package:flutter_app/config/index.dart';
 import 'package:flutter_app/store.dart';
 import 'package:flutter_app/components/display/globalContext.dart';
+import 'package:flutter_app/components/display/bottomNavigation.dart';
+import 'package:flutter_app/pages/detailPage.dart';
 
 class AppComponent extends StatelessWidget {
 
@@ -15,6 +17,7 @@ class AppComponent extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
+        LogUtils.init(isDebug: (mode != 3));
         return new StoreProvider(
             store: store,
             child: GlobalContext(
