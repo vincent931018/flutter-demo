@@ -15,3 +15,9 @@ A new Flutter application.
 - 路由handle处理封装 抽离文件
 
 - 工具函数提取
+
+- json model 互转
+
+- 全局toast、loading提取
+
+- 日志级别打印
