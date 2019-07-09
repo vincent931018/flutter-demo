@@ -11,11 +11,11 @@ class Loading {
 
     static bool dismissed = false;
 
-    static void show(BuildContext context) async {
+    static void show(BuildContext context, { bool mask = false }) async {
         var overlayState = Overlay.of(context);
 
         overlayEntry = new OverlayEntry(builder: (context) {
-            return buildToastLayout();
+            return buildToastLayout(mask);
         });
 
         overlayState.insert(overlayEntry);
@@ -30,37 +30,47 @@ class Loading {
         dismissed = true;
     }
 
-    static LayoutBuilder buildToastLayout() {
+    static LayoutBuilder buildToastLayout(bool mask) {
         return LayoutBuilder(builder: (context, constraints) {
-            return Container(
-                child: Container(
-                    child: Column(
-                        mainAxisSize: MainAxisSize.min,
+            return IgnorePointer(
+                ignoring: !mask,
+                child: Material(
+                    color: Colors.white.withOpacity(0),
+                    child: Stack(
+                        alignment: const FractionalOffset(0.5, 0.5),
                         children: <Widget>[
-                            CircularProgressIndicator(
-                                valueColor: new AlwaysStoppedAnimation<Color>(
-                                    Colors.white.withOpacity(0.5)),
-                            ),
-                            Container(
-                                child: new Text(
-                                    "加载中...",
-                                    style: TextStyle(color: Colors.white.withOpacity(0.9)),
-                                ),
-                                margin: EdgeInsets.only(
-                                    top: 10,
+                            Positioned(
+                                child: Container(
+                                    child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                            CircularProgressIndicator(
+                                                valueColor: new AlwaysStoppedAnimation<Color>(
+                                                    Colors.white.withOpacity(0.5)),
+                                            ),
+                                            Container(
+                                                child: new Text(
+                                                    "加载中...",
+                                                    style: TextStyle(color: Colors.white.withOpacity(0.9)),
+                                                ),
+                                                margin: EdgeInsets.only(
+                                                    top: 10,
+                                                ),
+                                            )
+                                        ],
+                                    ),
+                                    decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.6),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5),
+                                        ),
+                                    ),
+                                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                                 ),
                             )
                         ],
                     ),
-                    decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.6),
-                        borderRadius: BorderRadius.all(
-                            Radius.circular(5),
-                        ),
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 ),
-                alignment: Alignment.center,
             );
         });
     }

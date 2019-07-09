@@ -8,7 +8,6 @@ import 'package:json_annotation/json_annotation.dart';
  */
 
 /// User model
-// user.g.dart 将在我们运行生成命令后自动生成
 part 'user.g.dart';
 
 @JsonSerializable()

@@ -11,18 +11,13 @@ import 'package:flutter_app/components/display/loading.dart';
 
 LinkedHashMap<_GlobalContextState, BuildContext> _contextMap = LinkedHashMap();
 
-bool showMask = false;
-
 class GlobalContext extends StatefulWidget {
 
     final Widget child;
 
-    final bool mask;
-
     const GlobalContext({
         Key key,
         @required this.child,
-        @required this.mask,
     })  : super(key: key);
 
     @override
@@ -54,37 +49,19 @@ class _GlobalContextState extends State<GlobalContext> {
             ],
         );
 
-        Widget w = Directionality(
-            child: Stack(children: <Widget>[
-                overlay,
-                Positioned(
-                    left: 0.0,
-                    right: 0.0,
-                    top: 0.0,
-                    bottom: 0.0,
-                    child: IgnorePointer(
-                        ignoring: !showMask,
-                        child: Container(
-                            color: Colors.black.withOpacity(0.0),
-                        ),
-                    ),
-                )
-            ]),
+        return Directionality(
+            child: overlay,
             textDirection: TextDirection.ltr,
         );
-
-        return w;
     }
 }
 
 globalShowToast(String msg, bool mask) {
-    showMask = mask;
-    Toast.show(_contextMap.values.first, msg);
+    Toast.show(_contextMap.values.first, msg, mask: mask);
 }
 
 globalShowLoading(bool mask) {
-    showMask = mask;
-    Loading.show(_contextMap.values.first);
+    Loading.show(_contextMap.values.first, mask: mask);
 }
 
 globalHideLoading() {

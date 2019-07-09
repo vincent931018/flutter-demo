@@ -5,7 +5,6 @@ import 'package:flutter_app/actions/detailPage/operationAction.dart';
 import 'package:flutter_app/utils/routerUtils.dart';
 import 'package:flutter_app/utils/colorUtils.dart';
 import 'package:flutter_app/utils/commonUtils.dart';
-import 'package:flutter_app/utils/logUtils.dart';
 import 'package:flutter_app/assets/colors.dart';
 
 class DetailPage extends StatefulWidget {
@@ -43,6 +42,8 @@ class _DetailPageState extends State<DetailPage> {
                             new FlatButton(onPressed: () {
                                 HttpClient.post("/home/queryHomePageInfo", {
                                     "uid": 1554194145097
+                                }, customOptions: {
+                                    "delay": 3000
                                 }).then((res) {
                                     CommonUtils.showToast("res:$res");
                                 }).catchError((err) {

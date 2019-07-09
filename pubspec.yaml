@@ -53,6 +53,7 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
+  # 图片静态资源
   assets:
      - images/kid.jpg
 
@@ -81,6 +82,7 @@ flutter:
   #
   # For details regarding fonts from Ipackage dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  # 字体静态资源
   fonts:
     - family: Iconfont
       fonts:

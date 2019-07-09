@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class Toast {
     static ToastView preToast;
 
-    static show(BuildContext context, String msg) {
+    static show(BuildContext context, String msg, { bool mask = false }) {
         preToast?.dismiss();
         preToast = null;
         var overlayState = Overlay.of(context);
@@ -38,7 +38,7 @@ class Toast {
                 opacityAnim1: opacityAnim1,
                 opacityAnim2: opacityAnim2,
                 offsetAnim: offsetAnim,
-                child: buildToastLayout(msg),
+                child: buildToastLayout(msg, mask),
             );
         });
 
@@ -53,33 +53,34 @@ class Toast {
         toastView._show();
     }
 
-    static LayoutBuilder buildToastLayout(String msg) {
+    static LayoutBuilder buildToastLayout(String msg, bool mask) {
         return LayoutBuilder(builder: (context, constraints) {
-            return Container(
+            return IgnorePointer(
+                ignoring: !mask,
                 child: Material(
                     color: Colors.white.withOpacity(0),
-                    child: Container(
-                        child: Container(
-                            child: Text(
-                                msg,
-                                style: TextStyle(color: Colors.white),
-                            ),
-                            decoration: BoxDecoration(
-                                color: Colors.black.withOpacity(0.6),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(5),
+                    child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: <Widget>[
+                            Positioned(
+                                child: Container(
+                                    child: Text(
+                                        msg,
+                                        style: TextStyle(color: Colors.white),
+                                    ),
+                                    decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.6),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5),
+                                        ),
+                                    ),
+                                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                                 ),
-                            ),
-                            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        ),
-                        margin: EdgeInsets.only(
-                            bottom: constraints.biggest.height * 0.25,
-                            left: constraints.biggest.width * 0.2,
-                            right: constraints.biggest.width * 0.2,
-                        ),
-                    ),
+                                bottom: 200,
+                            )
+                        ],
+                    )
                 ),
-                alignment: Alignment.bottomCenter,
             );
         });
     }
