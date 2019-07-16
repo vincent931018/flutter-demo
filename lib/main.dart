@@ -7,6 +7,7 @@ import 'package:flutter_app/store.dart';
 import 'package:flutter_app/components/display/globalContext.dart';
 import 'package:flutter_app/components/display/bottomNavigation.dart';
 import 'package:flutter_app/pages/detailPage.dart';
+import 'package:flutter_app/pages/studioList.dart';
 
 class AppComponent extends StatelessWidget {
 
@@ -27,6 +28,7 @@ class AppComponent extends StatelessWidget {
                     home: BottomNavigationWidget(),
                     routes: <String, WidgetBuilder> {
                         '/homePage': (BuildContext context) => BottomNavigationWidget(),
+                        '/studioList': (BuildContext context) => StudioList(),
                         '/detailPage': (BuildContext context) => DetailPage(),
                         '/coursePage': (BuildContext context) => BottomNavigationWidget(currentIndex: 1),
                         '/myPage': (BuildContext context) => BottomNavigationWidget(currentIndex: 2),

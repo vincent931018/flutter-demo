@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/colorUtils.dart';
+import 'package:flutter_app/utils/routerUtils.dart';
 import 'package:flutter_app/assets/icons.dart';
 
 class Nearby extends StatefulWidget {
@@ -61,7 +62,9 @@ class _NearbyState extends State<Nearby> {
                                     ],
                                 ),
                                 onTap: () {
-                                    print("查看全部");
+                                    RouterUtils.push(context, Routes.studioList, params: {
+                                        "studioId": 1
+                                    });
                                 },
                             ),
                         ],

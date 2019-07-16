@@ -3,12 +3,15 @@
  * @Email 845982120@qq.com
  * @Website https://www.caowencheng.com
  */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/components/display/bottomNavigation.dart';
 import 'package:flutter_app/pages/detailPage.dart';
+import 'package:flutter_app/pages/studioList.dart';
 
 enum Routes {
 	homePage,
+	studioList,
 	detailPage,
 	coursePage,
 	myPage,
@@ -24,6 +27,8 @@ class RouterUtils {
 			switch (routeName) {
 				case Routes.homePage:
 					return new BottomNavigationWidget(currentIndex: 0);
+				case Routes.studioList:
+					return new StudioList(params: params);
 				case Routes.detailPage:
 					return new DetailPage(params: params);
 				case Routes.coursePage:
@@ -43,6 +48,8 @@ class RouterUtils {
 		switch (routeName) {
 			case Routes.homePage:
 				return "/homePage";
+			case Routes.studioList:
+				return "/studioList";
 			case Routes.detailPage:
 				return "/detailPage";
 			case Routes.coursePage:

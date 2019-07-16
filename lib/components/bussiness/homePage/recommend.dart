@@ -54,16 +54,18 @@ class _RecommendState extends State<Recommend> {
                                         children: <Widget>[
                                             new Column(
                                                 children: <Widget>[
-                                                    new ClipRRect(
-                                                        child: new Image.network(
-                                                            "https://qiniuts.lanrenyun.cn/1H5A3733.jpg",
-                                                            fit: BoxFit.cover,
-                                                            width: MediaQuery.of(context).size.width - 32,
-                                                            height: 135,
+                                                    new Container(
+                                                        child: new ClipRRect(
+                                                            child: new Image.network(
+                                                                "https://qiniuts.lanrenyun.cn/1H5A3733.jpg",
+                                                                fit: BoxFit.cover,
+                                                                width: MediaQuery.of(context).size.width - 32,
+                                                                height: 135,
+                                                            ),
+                                                            borderRadius: BorderRadius.only(
+                                                                topLeft: Radius.circular(4),
+                                                                topRight: Radius.circular(4)),
                                                         ),
-                                                        borderRadius: BorderRadius.only(
-                                                            topLeft: Radius.circular(4),
-                                                            topRight: Radius.circular(4)),
                                                     ),
                                                     new Container(
                                                         child: new Row(
@@ -171,7 +173,8 @@ class _RecommendState extends State<Recommend> {
                                                 left: 0,
                                             ),
                                         ],
-                                    )),
+                                    )
+                                ),
                             ],
                         ),
                         margin: EdgeInsets.only(top: 14),
