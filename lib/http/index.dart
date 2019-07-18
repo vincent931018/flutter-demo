@@ -12,32 +12,21 @@ LoadingCtrl loadingCtrl = new LoadingCtrl();
 // 异常控制器
 ExceptionCtrl exceptionCtrl = new ExceptionCtrl();
 
-// 系统默认请求配置
-Map defaultOptions = {
-    "showLoading": true, // 接口是否显示loading
-    "delay": 0, // 接口延迟调用
-    "version": 2, // 接口版本
-    "headers": {
-        'content-type': 'application/json;charset=UTF-8',
-    }, // 自定义请求头
-    "chainStart": false, // 链式调用开头
-    "chainFinish": false, // 链式调用结尾
-    "chainReject": false, // 链式调用是否取消下传
-    "effectMainProcess": false // 是否关键请求 异常跳错误页
-};
-
 class HttpClient {
 
     /*
     post 请求
      */
-    static Future post (String url, Object params, {Map customOptions}) async {
-        Map httpOptions = {};
-        httpOptions.addAll(defaultOptions);
-        if (customOptions != null) {
-            httpOptions.addAll(customOptions);
-        }
-        if (httpOptions["chainReject"]) {
+    static Future post(String url, Map params, {
+        bool showLoading = true, // 接口是否显示loading
+        int delay = 0, // 接口延迟调用
+        int version = 0, // 接口版本// 自定义请求头
+        bool chainStart = false, // 链式调用开头
+        bool chainFinish = false, // 链式调用结尾
+        bool chainReject = false, // 链式调用是否取消下传
+        bool effectMainProcess = false // 是否关键请求 异常跳错误页
+    }) async {
+        if (chainReject) {
             apiCounter.resetApiCount();
             loadingCtrl.hideLoading();
             return Future.error({
@@ -45,19 +34,19 @@ class HttpClient {
                 "msg": "链式请求中断"
             });
         }
-        if (httpOptions["showLoading"]) {
+        if (showLoading) {
             if (apiCounter.getApiCount() == 0) {
                 loadingCtrl.showLoading();
             }
-            if (httpOptions["chainStart"]) {
+            if (chainStart) {
                 apiCounter.increase();
                 chainFlag = true;
             }
             apiCounter.increase();
         }
-        return await httpCoreFun(url, params, httpOptions).then((res) {
-            if (httpOptions["showLoading"]) {
-                if (httpOptions["chainFinish"]) {
+        return await httpCoreFun(url, params, version, delay).then((res) {
+            if (showLoading) {
+                if (chainFinish) {
                     apiCounter.decrease();
                     chainFlag = false;
                 }
@@ -68,8 +57,8 @@ class HttpClient {
             }
             return new Future(() => res);
         }, onError: (e) {
-            if (httpOptions["showLoading"]) {
-                if (httpOptions["chainFinish"]) {
+            if (showLoading) {
+                if (chainFinish) {
                     apiCounter.decrease();
 					chainFlag = false;
                 }
@@ -80,13 +69,13 @@ class HttpClient {
             }
             return Future.error(e);
         }).catchError((e) {
-            if (httpOptions["chainReject"]) {
+            if (chainReject) {
                 return Future.error({
                     "code": e.response == null ? 9999 : (e.response.statusCode == null ? 9999 : e.response.statusCode),
                     "msg": e.message
                 });
             }
-            if (!httpOptions["effectMainProcess"]) {
+            if (!effectMainProcess) {
                 if (chainFlag) {
                     apiCounter.resetApiCount();
                     loadingCtrl.hideLoading();

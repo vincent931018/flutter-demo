@@ -40,13 +40,16 @@ class _DetailPageState extends State<DetailPage> {
                         children: [
                             new Text("params:${widget.params["name"] == null ? "xixi" : widget.params["name"]}"),
                             new FlatButton(onPressed: () {
-                                HttpClient.post("/home/queryHomePageInfo", {
-                                    "uid": 1554194145097
-                                }, customOptions: {
-                                    "delay": 3000
-                                }).then((res) {
+                                HttpClient.post(
+                                    "/home/queryHomePageInfo",
+                                    {
+                                        "uid": "1554194145097"
+                                    },
+                                    delay: 3000
+                                ).then((res) {
                                     CommonUtils.showToast("res:$res");
                                 }).catchError((err) {
+                                    print(err);
                                     CommonUtils.showToast("err:$err");
                                 });
                             }, child: new Text("接口请求")),

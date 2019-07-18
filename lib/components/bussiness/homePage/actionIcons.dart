@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/assets/icons.dart';
 import 'package:flutter_app/utils/colorUtils.dart';
+import 'package:flutter_app/utils/routerUtils.dart';
 
 class ActionIcons extends StatefulWidget {
     @override
@@ -53,6 +54,9 @@ class _ActionIconsState extends State<ActionIcons> {
                                     ),
                                     onPressed: () {
                                         print("团课");
+                                        RouterUtils.push(context, Routes.detailPage, params: {
+                                            "name": "cwc"
+                                        });
                                     }),
                             ),
                             new Text(

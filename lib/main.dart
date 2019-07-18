@@ -27,11 +27,11 @@ class AppComponent extends StatelessWidget {
                     debugShowCheckedModeBanner: false,
                     home: BottomNavigationWidget(),
                     routes: <String, WidgetBuilder> {
-                        '/homePage': (BuildContext context) => BottomNavigationWidget(),
-                        '/studioList': (BuildContext context) => StudioList(),
-                        '/detailPage': (BuildContext context) => DetailPage(),
-                        '/coursePage': (BuildContext context) => BottomNavigationWidget(currentIndex: 1),
-                        '/myPage': (BuildContext context) => BottomNavigationWidget(currentIndex: 2),
+                        '/homePage': (BuildContext context) => new BottomNavigationWidget(),
+                        '/studioList': (BuildContext context) => new StudioList(),
+                        '/detailPage': (BuildContext context) => new DetailPage(),
+                        '/coursePage': (BuildContext context) => new BottomNavigationWidget(),
+                        '/myPage': (BuildContext context) => new BottomNavigationWidget(),
                     },
                 )
             )

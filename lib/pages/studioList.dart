@@ -7,8 +7,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/colorUtils.dart';
-import 'package:flutter_app/assets/colors.dart';
 import 'package:flutter_app/assets/icons.dart';
+import 'package:flutter_app/utils/commonUtils.dart';
+import 'package:flutter_app/components/display/navigationHeader.dart';
 
 class StudioList extends StatefulWidget {
 
@@ -136,14 +137,13 @@ class StudioCard extends StatelessWidget {
                             ],
                         )
                     ],
-                )
+                ),
             ),
         );
     }
 }
 
 class _StudioListState extends State<StudioList> {
-
 
     @override
     void initState() {
@@ -153,46 +153,56 @@ class _StudioListState extends State<StudioList> {
     @override
     Widget build(BuildContext context) {
         return new Material(
-            child: new Scaffold(
-                appBar: AppBar(
-                    centerTitle: true,
-                    title: new Text("福州"),
-                    backgroundColor: Color(ColorUtils.fromHexString(ColorsLibrary.themeColor)),
-                ),
-                body: new SingleChildScrollView(
-                    child: new Container(
-                        child: new Column(
-                            children: <Widget>[
-                                new Container(
-                                    child: new StudioCard(),
-                                    margin: EdgeInsets.only(
-                                        bottom: 12
+            child: new Column(
+                children: <Widget>[
+                    new NavigationHeader("福州"),
+                    Expanded(
+                        child:  RefreshIndicator(
+                            child: new SingleChildScrollView(
+                                child: new Container(
+                                    child: new Column(
+                                        children: <Widget>[
+                                            new Container(
+                                                child: new StudioCard(),
+                                                margin: EdgeInsets.only(
+                                                    bottom: 12
+                                                ),
+                                            ),
+                                            new Container(
+                                                child: new StudioCard(),
+                                                margin: EdgeInsets.only(
+                                                    bottom: 12
+                                                ),
+                                            ),
+                                            new Container(
+                                                child: new StudioCard(),
+                                                margin: EdgeInsets.only(
+                                                    bottom: 12
+                                                ),
+                                            ),
+                                            new Container(
+                                                child: new StudioCard(),
+                                                margin: EdgeInsets.only(
+                                                    bottom: 12
+                                                ),
+                                            ),
+                                        ],
                                     ),
-                                ),
-                                new Container(
-                                    child: new StudioCard(),
-                                    margin: EdgeInsets.only(
-                                        bottom: 12
-                                    ),
-                                ),
-                                new Container(
-                                    child: new StudioCard(),
-                                    margin: EdgeInsets.only(
-                                        bottom: 12
-                                    ),
-                                ),
-                                new Container(
-                                    child: new StudioCard(),
-                                    margin: EdgeInsets.only(
-                                        bottom: 12
-                                    ),
-                                ),
-                            ],
+                                    padding: EdgeInsets.all(16),
+                                )
+                            ),
+                            onRefresh: _onRefresh
                         ),
-                        padding: EdgeInsets.all(16),
                     )
-                ),
-            ),
+                ],
+            )
         );
+    }
+
+    // 下拉刷新
+    Future<Null> _onRefresh() async {
+        await Future.delayed(Duration(seconds: 3), () {
+            CommonUtils.showToast("刷新成功");
+        });
     }
 }
