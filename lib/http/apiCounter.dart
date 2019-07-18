@@ -1,3 +1,10 @@
+/*
+ * @Author: caowencheng
+ * @GitHub: https://github.com/cwc845982120
+ * @Description: httpClient 接口调用计数器
+ * @Date: 2019-07-16
+ */
+
 class ApiCounter {
 
     num apiCount;

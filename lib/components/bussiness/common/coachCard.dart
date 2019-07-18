@@ -1,7 +1,7 @@
 /*
  * @Author: caowencheng
  * @GitHub: https://github.com/cwc845982120
- * @Description: 教练卡片展示
+ * @Description: 教练卡片展示（首页）
  * @Date: 2019-07-16
  */
 

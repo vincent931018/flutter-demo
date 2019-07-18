@@ -1,3 +1,10 @@
+/*
+ * @Author: caowencheng
+ * @GitHub: https://github.com/cwc845982120
+ * @Description: httpClient 主逻辑
+ * @Date: 2019-07-16
+ */
+
 import './core.dart';
 import './apiCounter.dart';
 import './loadingCtrl.dart';

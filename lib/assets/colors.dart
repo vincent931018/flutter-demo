@@ -1,7 +1,8 @@
 /*
- * Created by caowencheng on 2019-07-04
- * @Email 845982120@qq.com
- * @Website https://www.caowencheng.com
+ * @Author: caowencheng
+ * @GitHub: https://github.com/cwc845982120
+ * @Description: app 颜色库
+ * @Date: 2019-07-16
  */
 
 class ColorsLibrary {

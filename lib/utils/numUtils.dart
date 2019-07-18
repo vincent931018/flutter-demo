@@ -1,8 +1,8 @@
-/**
+/*
  * @Author: caowencheng
  * @GitHub: https://github.com/cwc845982120
- * @Description: NumUtil
- * @Date: 2019-07-09
+ * @Description: 数值处理 工具函数
+ * @Date: 2019-07-16
  */
 
 import 'package:decimal/decimal.dart';

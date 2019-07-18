@@ -1,8 +1,10 @@
 /*
- * Created by caowencheng on 2019-07-04
- * @Email 845982120@qq.com
- * @Website https://www.caowencheng.com
+ * @Author: caowencheng
+ * @GitHub: https://github.com/cwc845982120
+ * @Description: 详情页 reducer
+ * @Date: 2019-07-16
  */
+
 import 'package:redux/redux.dart';
 import 'package:flutter_app/state/detailPageState.dart';
 import 'package:flutter_app/actions/detailPage/operationAction.dart';

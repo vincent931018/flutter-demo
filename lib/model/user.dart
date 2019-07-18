@@ -1,11 +1,11 @@
-import 'package:json_annotation/json_annotation.dart';
-
-/**
+/*
  * @Author: caowencheng
  * @GitHub: https://github.com/cwc845982120
- * @Description: user model
- * @Date: 2019-07-09
+ * @Description: 用户信息模型
+ * @Date: 2019-07-16
  */
+
+import 'package:json_annotation/json_annotation.dart';
 
 /// User model
 part 'user.g.dart';

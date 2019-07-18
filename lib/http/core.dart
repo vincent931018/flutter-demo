@@ -1,3 +1,10 @@
+/*
+ * @Author: caowencheng
+ * @GitHub: https://github.com/cwc845982120
+ * @Description: httpClient 核心调用
+ * @Date: 2019-07-16
+ */
+
 import 'package:dio/dio.dart';
 import './interceptors.dart';
 import './baseUrl.dart';

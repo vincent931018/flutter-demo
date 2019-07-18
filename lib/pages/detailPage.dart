@@ -1,3 +1,10 @@
+/*
+ * @Author: caowencheng
+ * @GitHub: https://github.com/cwc845982120
+ * @Description: 详情页
+ * @Date: 2019-07-16
+ */
+
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_app/http/index.dart';
@@ -9,7 +16,7 @@ import 'package:flutter_app/assets/colors.dart';
 
 class DetailPage extends StatefulWidget {
 
-  	DetailPage({Map params}) : this.params = params;
+  	DetailPage({Key key, this.params}) : super(key: key);
 
   	final Map params;
 
@@ -23,6 +30,14 @@ class _DetailPageState extends State<DetailPage> {
   	String pageTitle = "详情";
 
   	String count = "1";
+
+    Map params;
+
+    @override
+    void initState() {
+        params = widget.params;
+        super.initState();
+    }
 
   	@override
   	Widget build(BuildContext context) {

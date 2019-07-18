@@ -1,13 +1,13 @@
 /*
- * Created by caowencheng on 2019-07-04
- * @Email 845982120@qq.com
- * @Website https://www.caowencheng.com
+ * @Author: caowencheng
+ * @GitHub: https://github.com/cwc845982120
+ * @Description: app icons库
+ * @Date: 2019-07-16
  */
+
 import 'package:flutter/widgets.dart';
 
-/*
-iconFont.css 转 dart 文件 网址 <https://xwrite.gitee.io/blog/>
- */
+///iconFont.css 转 dart 文件 网址 <https://xwrite.gitee.io/blog/>
 class IconsLibrary{
 	static const String _family = 'iconfont';
 	IconsLibrary._();

@@ -1,7 +1,7 @@
 /*
  * @Author: caowencheng
  * @GitHub: https://github.com/cwc845982120
- * @Description: 首页banner展示
+ * @Description: 首页 banner展示
  * @Date: 2019-07-15
  */
 

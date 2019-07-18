@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/utils/colorUtils.dart';
+import 'package:flutter_app/utils/screenUtils.dart';
 import 'package:flutter_app/assets/icons.dart';
 
 class NavigationHeader extends  StatefulWidget {
@@ -15,23 +16,22 @@ class NavigationHeader extends  StatefulWidget {
 
     final String title;
 
-    double getStatusBarHeight(BuildContext context) {
-        return MediaQuery.of(context).padding.top;
-    }
-
     @override
     State<StatefulWidget> createState() => new _NavigationHeaderState();
 
 }
 
 class _NavigationHeaderState extends State<NavigationHeader> {
+    
+    // 导航栏高度
+    double navigationHeight = 44.0;
 
     // 是否展示导航返回按钮
-    bool showNavigationBack;
+    bool _showNavigationBack;
 
     @override
     void initState() {
-        showNavigationBack = Navigator.canPop(context);
+        _showNavigationBack = Navigator.canPop(context);
         super.initState();
     }
 
@@ -41,7 +41,7 @@ class _NavigationHeaderState extends State<NavigationHeader> {
             children: <Widget>[
                 new Container(
                     padding: EdgeInsets.only(
-                        top: widget.getStatusBarHeight(context),
+                        top: ScreenUtils.getStatusBarH(context),
                         left: 16,
                         right: 16
                     ),
@@ -53,7 +53,7 @@ class _NavigationHeaderState extends State<NavigationHeader> {
                             fontWeight: FontWeight.w700
                         ),
                     ),
-                    height: widget.getStatusBarHeight(context) + 44,
+                    height: ScreenUtils.getStatusBarH(context) + navigationHeight,
                     width: MediaQuery.of(context).size.width,
                     color: Color(ColorUtils.fromHexString("#00C3AA")),
                     alignment: Alignment(0, 0),
@@ -65,13 +65,13 @@ class _NavigationHeaderState extends State<NavigationHeader> {
                             right: 16
                         ),
                         color: Colors.white.withOpacity(0),
-                        height: 44,
+                        height: navigationHeight,
                         width: MediaQuery.of(context).size.width,
                         child: new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                                (showNavigationBack ? new IconButton(
+                                (_showNavigationBack ? new IconButton(
                                     icon: new Icon(
                                         IconsLibrary.icon_extension,
                                         color: Colors.white,
@@ -85,7 +85,7 @@ class _NavigationHeaderState extends State<NavigationHeader> {
                             ],
                         ),
                     ),
-                    top: widget.getStatusBarHeight(context),
+                    top: ScreenUtils.getStatusBarH(context),
                     left: 0,
                 )
             ],

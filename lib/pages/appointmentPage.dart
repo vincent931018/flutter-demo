@@ -1,19 +1,19 @@
 /*
  * @Author: caowencheng
  * @GitHub: https://github.com/cwc845982120
- * @Description: 我的
+ * @Description: 预约页
  * @Date: 2019-07-16
  */
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/components/display/navigationHeader.dart';
 
-class MyPage extends StatefulWidget {
+class AppointmentPage extends StatefulWidget {
     @override
-    _MyPageState createState() => new _MyPageState();
+    _AppointmentPageState createState() => new _AppointmentPageState();
 }
 
-class _MyPageState extends State<MyPage> {
+class _AppointmentPageState extends State<AppointmentPage> {
 
     @override
     Widget build(BuildContext context) {
@@ -21,8 +21,8 @@ class _MyPageState extends State<MyPage> {
             child: new Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                    new NavigationHeader("我的"),
-                    new Text("我的")
+                    new NavigationHeader("课程"),
+                    new Text("课程")
                 ],
             ),
         );

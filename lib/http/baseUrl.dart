@@ -1,3 +1,10 @@
+/*
+ * @Author: caowencheng
+ * @GitHub: https://github.com/cwc845982120
+ * @Description: httpClient baseUrl 获取方法
+ * @Date: 2019-07-16
+ */
+
 import 'package:flutter_app/config/index.dart';
 
 // 接口调用 baseURL mode 0:调试 1:测试 2:准生产 3:生产

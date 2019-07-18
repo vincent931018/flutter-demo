@@ -1,11 +1,12 @@
 /*
- * Created by caowencheng on 2019-07-04
- * @Email 845982120@qq.com
- * @Website https://www.caowencheng.com
+ * @Author: caowencheng
+ * @GitHub: https://github.com/cwc845982120
+ * @Description: 路由处理 工具函数
+ * @Date: 2019-07-16
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/display/bottomNavigation.dart';
+import 'package:flutter_app/components/display/bottomTabBar.dart';
 import 'package:flutter_app/pages/detailPage.dart';
 import 'package:flutter_app/pages/studioList.dart';
 
@@ -13,7 +14,7 @@ enum Routes {
 	homePage,
 	studioList,
 	detailPage,
-	coursePage,
+	appointmentPage,
 	myPage,
 }
 
@@ -26,17 +27,17 @@ class RouterUtils {
 		return new MaterialPageRoute(builder: (BuildContext context){
 			switch (routeName) {
 				case Routes.homePage:
-					return new BottomNavigationWidget(currentIndex: 0);
+					return new BottomTabBar(currentIndex: 0);
 				case Routes.studioList:
 					return new StudioList(params: params);
 				case Routes.detailPage:
 					return new DetailPage(params: params);
-				case Routes.coursePage:
-					return new BottomNavigationWidget(currentIndex: 1);
+				case Routes.appointmentPage:
+					return new BottomTabBar(currentIndex: 1);
 				case Routes.myPage:
-					return new BottomNavigationWidget(currentIndex: 2);
+					return new BottomTabBar(currentIndex: 2);
 				default:
-					return new BottomNavigationWidget(currentIndex: 0);
+					return new BottomTabBar(currentIndex: 0);
 			}
 		});
 	}
@@ -52,8 +53,8 @@ class RouterUtils {
 				return "/studioList";
 			case Routes.detailPage:
 				return "/detailPage";
-			case Routes.coursePage:
-				return "/coursePage";
+			case Routes.appointmentPage:
+				return "/appointmentPage";
 			case Routes.myPage:
 				return "/mypage";
 			default:

@@ -1,14 +1,14 @@
+/*
+ * @Author: caowencheng
+ * @GitHub: https://github.com/cwc845982120
+ * @Description: 定时处理 工具函数
+ * @Date: 2019-07-16
+ */
+
 import 'dart:async';
 
 /// timer callback.(millisUntilFinished 毫秒).
 typedef void OnTimerTickCallback(int millisUntilFinished);
-
-/**
- * @Author: caowencheng
- * @GitHub: https://github.com/cwc845982120
- * @Description: TimerUtils
- * @Date: 2019-07-09
- */
 
 /// TimerUtils
 class TimerUtils {
