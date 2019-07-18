@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 
 class Loading {
+
     static OverlayEntry overlayEntry;
 
     static bool dismissed = false;
@@ -32,7 +33,7 @@ class Loading {
     }
 
     static LayoutBuilder buildToastLayout(bool mask) {
-        return LayoutBuilder(builder: (context, constraints) {
+        return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
             return IgnorePointer(
                 ignoring: !mask,
                 child: Material(

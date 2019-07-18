@@ -28,8 +28,12 @@ class _BottomTabBarState extends State<BottomTabBar> {
 
 	int _currentIndex;
 
+	// tabBar 高度
+	double _tabBarHeight;
+
 	@override
 	void initState() {
+		_tabBarHeight = 54.0;
 		_currentIndex = widget.currentIndex;
 		list
 			..add(HomePage())
@@ -43,7 +47,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
 			color: Colors.white,
 			child: SafeArea(
 				child: SizedBox(
-					height: 54.0,
+					height: _tabBarHeight,
 					child: Card(
 						elevation: 0.0,
 						shape: RoundedRectangleBorder(),

@@ -26,6 +26,7 @@ class HttpClient {
      */
     static Future post(String url, Map params, {
         bool showLoading = true, // 接口是否显示loading
+        Map<String, String> headers,
         int delay = 0, // 接口延迟调用
         int version = 0, // 接口版本// 自定义请求头
         bool chainStart = false, // 链式调用开头
@@ -51,7 +52,7 @@ class HttpClient {
             }
             apiCounter.increase();
         }
-        return await httpCoreFun(url, params, version, delay).then((res) {
+        return await httpCoreFun(url, params, version, headers, delay).then((res) {
             if (showLoading) {
                 if (chainFinish) {
                     apiCounter.decrease();

@@ -55,7 +55,14 @@ class Toast {
     }
 
     static LayoutBuilder buildToastLayout(String msg, bool mask) {
-        return LayoutBuilder(builder: (context, constraints) {
+        return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+
+            // 父view 高度
+            double parentHeight = constraints.constrainHeight();
+
+            // 父view 宽度
+            double parentWidth = constraints.constrainWidth();
+
             return IgnorePointer(
                 ignoring: !mask,
                 child: Material(
@@ -76,8 +83,11 @@ class Toast {
                                         ),
                                     ),
                                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                                    constraints: new BoxConstraints(
+                                        maxWidth: parentWidth * 0.6
+                                    ),
                                 ),
-                                bottom: 200,
+                                bottom: parentHeight * 0.2,
                             )
                         ],
                     )

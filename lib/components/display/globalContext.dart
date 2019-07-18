@@ -14,12 +14,9 @@ LinkedHashMap<_GlobalContextState, BuildContext> _contextMap = LinkedHashMap();
 
 class GlobalContext extends StatefulWidget {
 
-    final Widget child;
+    const GlobalContext({Key key, @required this.child}) : super(key: key);
 
-    const GlobalContext({
-        Key key,
-        @required this.child,
-    })  : super(key: key);
+    final Widget child;
 
     @override
     _GlobalContextState createState() => _GlobalContextState();
@@ -46,7 +43,7 @@ class _GlobalContextState extends State<GlobalContext> {
                         _contextMap[this] = ctx;
                         return widget.child;
                     },
-                ),
+                )
             ],
         );
 
