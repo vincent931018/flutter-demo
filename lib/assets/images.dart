@@ -8,7 +8,12 @@
 class ImagesLibrary {
 
 	/*
-	测试图片
+	 * 测试图片
 	 */
 	static const String testPicture = "images/kid.jpg";
+
+	/*
+	 * 默认占位图
+	 */
+	static const String placeholderImg = "images/placeholder.png";
 }

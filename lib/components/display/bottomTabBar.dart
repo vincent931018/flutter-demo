@@ -24,7 +24,7 @@ class BottomTabBar extends StatefulWidget {
 
 class _BottomTabBarState extends State<BottomTabBar> {
 
-	List<Widget> list = List();
+	List<Widget> _children;
 
 	int _currentIndex;
 
@@ -35,12 +35,11 @@ class _BottomTabBarState extends State<BottomTabBar> {
 	void initState() {
 		_tabBarHeight = 54.0;
 		_currentIndex = widget.currentIndex;
-		list
-			..add(HomePage())
-			..add(AppointmentPage())
-			..add(MyPage());
+		_children = [HomePage(), AppointmentPage(), MyPage()];
 		super.initState();
 	}
+
+	final pageController = PageController();
 
 	Widget _buildBottomTabBar(){
 		return Container(
@@ -92,9 +91,7 @@ class _BottomTabBarState extends State<BottomTabBar> {
 					],
 				),
 				onTap: (){
-					setState(() {
-						_currentIndex = index;
-					});
+					pageController.jumpToPage(index);
 				},
 			),
 		);
@@ -103,8 +100,19 @@ class _BottomTabBarState extends State<BottomTabBar> {
 	@override
 	Widget build(BuildContext context) {
 		return Scaffold(
-			body: list[_currentIndex],
+			body: PageView(
+				physics: new NeverScrollableScrollPhysics(),
+				children: _children,
+				controller: pageController,
+				onPageChanged: onPageChanged,
+			),
 			bottomNavigationBar: _buildBottomTabBar(),
 		);
+	}
+
+	void onPageChanged(int index) {
+		setState(() {
+			_currentIndex = index;
+		});
 	}
 }

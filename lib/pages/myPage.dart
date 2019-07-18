@@ -13,10 +13,14 @@ class MyPage extends StatefulWidget {
     _MyPageState createState() => new _MyPageState();
 }
 
-class _MyPageState extends State<MyPage> {
+class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
+
+    @override
+    bool get wantKeepAlive => true;
 
     @override
     Widget build(BuildContext context) {
+        super.build(context);
         return new Material(
             child: new Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

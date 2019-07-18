@@ -11,18 +11,22 @@ class Loading {
 
     static OverlayEntry overlayEntry;
 
-    static bool dismissed = false;
+    static bool dismissed = true;
 
     static void show(BuildContext context, { bool mask = false }) async {
-        var overlayState = Overlay.of(context);
+        // 保证只有一个Loading
+        if (dismissed) {
+            var overlayState = Overlay.of(context);
 
-        overlayEntry = new OverlayEntry(builder: (context) {
-            return buildToastLayout(mask);
-        });
+            overlayEntry = new OverlayEntry(builder: (context) {
+                return buildToastLayout(mask);
+            });
 
-        overlayState.insert(overlayEntry);
+            overlayState.insert(overlayEntry);
 
-        dismissed = false;
+            dismissed = false;
+        }
+
     }
 
     static void dismiss() async {

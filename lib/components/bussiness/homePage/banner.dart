@@ -6,20 +6,65 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/timerUtils.dart';
+import 'package:flutter_app/assets/images.dart';
 
 class HomeBanner extends StatefulWidget {
     @override
     State createState() => new _HomeBannerState();
 }
 
-class _HomeBannerState extends State<HomeBanner> {
+class _HomeBannerState extends State<HomeBanner> with SingleTickerProviderStateMixin  {
+
+    bool skeletonFlag;
+
+    TimerUtils timer;
+
+    @override
+    void initState() {
+        skeletonFlag = true;
+        timer = new TimerUtils(mInterval: 1000, mTotalTime: 3000);
+        timer.setOnTimerTickCallback((seconds) {
+            if (seconds == 0) {
+                setState(() {
+                    skeletonFlag = false;
+                });
+            }
+        });
+        timer.startCountDown();
+        super.initState();
+    }
+
+    @override
+    void dispose() {
+        timer.cancel();
+        super.dispose();
+    }
+
+    LayoutBuilder buildToastLayout(bool skeletonFlag) {
+        return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+            if (skeletonFlag) {
+                return Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 145,
+                    decoration: new BoxDecoration(
+                        color: Colors.grey
+                    ),
+                );
+            } else {
+                return new FadeInImage.assetNetwork(
+                    placeholder: ImagesLibrary.placeholderImg,
+                    image: "https://portal.lanrenyun.cn/1561949318694",
+                    width: MediaQuery.of(context).size.width,
+                    height: 145,
+                    fit: BoxFit.cover,
+                );
+            }
+        });
+    }
+
     @override
     Widget build(BuildContext context) {
-        return new Image.network(
-            "https://portal.lanrenyun.cn/1561949318694",
-            width: MediaQuery.of(context).size.width,
-            height: 145,
-            fit: BoxFit.fitWidth,
-        );
+        return buildToastLayout(skeletonFlag);
     }
 }

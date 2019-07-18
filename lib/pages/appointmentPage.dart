@@ -13,10 +13,14 @@ class AppointmentPage extends StatefulWidget {
     _AppointmentPageState createState() => new _AppointmentPageState();
 }
 
-class _AppointmentPageState extends State<AppointmentPage> {
+class _AppointmentPageState extends State<AppointmentPage> with AutomaticKeepAliveClientMixin {
+
+    @override
+    bool get wantKeepAlive => true;
 
     @override
     Widget build(BuildContext context) {
+        super.build(context);
         return new Material(
             child: new Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
