@@ -6,6 +6,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils/screenUtils.dart';
 import 'package:flutter_app/components/display/navigationHeader.dart';
 
 class PageLayout extends StatefulWidget {
@@ -57,7 +58,10 @@ class _PageLayoutState extends State<PageLayout> {
                         navigationRightIconActions: widget.navigationRightIconActions,
                     ),
                     Expanded(
-                        child: widget.child ?? new Container(),
+                        child: new Container(
+                            child:  widget.child ?? new Container(),
+                            width: ScreenUtils.getScreenW(context),
+                        ),
                     )
                 ],
             ),

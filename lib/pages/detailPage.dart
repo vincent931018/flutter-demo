@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_app/http/index.dart';
 import 'package:flutter_app/actions/detailPage/operationAction.dart';
-import 'package:flutter_app/utils/routerUtils.dart';
 import 'package:flutter_app/utils/commonUtils.dart';
 import 'package:flutter_app/components/display/pageLayout.dart';
 
@@ -82,13 +81,6 @@ class _DetailPageState extends State<DetailPage> {
                                 child: new Icon(Icons.add),
                             );
                         },
-                    ),
-                    new FlatButton(
-                        // Attach the `callback` to the `onPressed` attribute
-                        onPressed: () {
-                            RouterUtils.pop(context, result: {"params": "123"});
-                        },
-                        child: new Icon(Icons.add),
                     ),
                     new Text(count),
                     new FlatButton(

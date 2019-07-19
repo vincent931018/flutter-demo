@@ -13,7 +13,7 @@ class MyPage extends StatefulWidget {
     _MyPageState createState() => new _MyPageState();
 }
 
-class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
+class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
 
     @override
     bool get wantKeepAlive => true;
