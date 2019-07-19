@@ -6,6 +6,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_app/utils/timerUtils.dart';
 import 'package:flutter_app/assets/images.dart';
 
@@ -52,12 +53,25 @@ class _HomeBannerState extends State<HomeBanner> with SingleTickerProviderStateM
                     ),
                 );
             } else {
-                return new FadeInImage.assetNetwork(
-                    placeholder: ImagesLibrary.placeholderImg,
-                    image: "https://portal.lanrenyun.cn/1561949318694",
+                return new Container(
+                    child: new Swiper(
+                        itemBuilder: (BuildContext context,int index){
+                            return new FadeInImage.assetNetwork(
+                                placeholder: ImagesLibrary.placeholderImg,
+                                image: "https://portal.lanrenyun.cn/1561949318694",
+                                width: MediaQuery.of(context).size.width,
+                                height: 145,
+                                fit: BoxFit.cover,
+                            );
+                        },
+                        autoplay: true,
+                        itemCount: 3,
+                        pagination: new SwiperPagination(),
+                        itemHeight: 145,
+                        itemWidth: MediaQuery.of(context).size.width,
+                    ),
                     width: MediaQuery.of(context).size.width,
                     height: 145,
-                    fit: BoxFit.cover,
                 );
             }
         });

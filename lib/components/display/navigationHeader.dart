@@ -12,9 +12,20 @@ import 'package:flutter_app/assets/icons.dart';
 
 class NavigationHeader extends  StatefulWidget {
 
-    NavigationHeader(String title) : this.title = (title == null ? "页面标题" : title);
+    const NavigationHeader({
+        Key key,
+        @required this.title,
+        this.navigationLeftIconActions,
+        this.navigationRightIconActions,
+    }) : super(key: key);
 
     final String title;
+
+    /// 导航条左边部分操作
+    final List<GestureDetector> navigationLeftIconActions;
+
+    /// 导航条右边部分操作
+    final List<GestureDetector> navigationRightIconActions;
 
     @override
     State<StatefulWidget> createState() => new _NavigationHeaderState();
@@ -26,12 +37,48 @@ class _NavigationHeaderState extends State<NavigationHeader> {
     // 导航栏高度
     double navigationHeight = 44.0;
 
-    // 是否展示导航返回按钮
-    bool _showNavigationBack;
+    /// 导航条左边部分操作
+    List<Container> _navigationLeftIconActions;
+
+    /// 导航条右边部分操作
+    List<Container> _navigationRightIconActions;
 
     @override
     void initState() {
-        _showNavigationBack = Navigator.canPop(context);
+        _navigationLeftIconActions = (widget.navigationLeftIconActions ?? []).map(
+                (w) => new Container(
+                    child: w,
+                    margin: EdgeInsets.only(
+                        right: 16
+                    ),
+                )
+        ).toList();
+        _navigationRightIconActions = (widget.navigationRightIconActions ?? []).map(
+                (w) => new Container(
+                child: w,
+                margin: EdgeInsets.only(
+                    left: 16
+                ),
+            )
+        ).toList();
+        // 如果页面可以返回 从list头部插入 返回按钮
+        if(Navigator.canPop(context)) {
+            _navigationLeftIconActions.insert(0, new Container(
+                child: GestureDetector(
+                    child: new Icon(
+                        IconsLibrary.icon_extension,
+                        color: Colors.white,
+                        size: 18,
+                    ),
+                    onTap: () {
+                        Navigator.pop(context);
+                    },
+                ),
+                margin: EdgeInsets.only(
+                    right: 16
+                ),
+            ));
+        }
         super.initState();
     }
 
@@ -60,33 +107,27 @@ class _NavigationHeaderState extends State<NavigationHeader> {
                 ),
                 new Positioned(
                     child: new Container(
-                        padding: EdgeInsets.only(
-                            left: 16,
-                            right: 16
-                        ),
-                        color: Colors.white.withOpacity(0),
+                        color: Colors.white.withOpacity(0.0),
                         height: navigationHeight,
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery.of(context).size.width - 32,
                         child: new Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
-                                (_showNavigationBack ? new IconButton(
-                                    icon: new Icon(
-                                        IconsLibrary.icon_extension,
-                                        color: Colors.white,
-                                        size: 18,
-                                    ),
-                                    onPressed: () {
-                                        Navigator.pop(context);
-                                    }
-                                ) : new Text("")),
-                                new Text(""),
+                                new Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children:  _navigationLeftIconActions,
+                                ),
+                                new Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: _navigationRightIconActions,
+                                ),
                             ],
                         ),
                     ),
                     top: ScreenUtils.getStatusBarH(context),
-                    left: 0,
+                    left: 16,
                 )
             ],
         );

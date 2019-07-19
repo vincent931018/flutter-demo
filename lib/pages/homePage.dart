@@ -10,7 +10,7 @@ import 'package:flutter_app/components/bussiness/homePage/actionIcons.dart';
 import 'package:flutter_app/components/bussiness/homePage/banner.dart';
 import 'package:flutter_app/components/bussiness/homePage/nearby.dart';
 import 'package:flutter_app/components/bussiness/homePage/recommend.dart';
-import 'package:flutter_app/components/display/navigationHeader.dart';
+import 'package:flutter_app/components/display/pageLayout.dart';
 import 'package:flutter_app/utils/commonUtils.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,26 +36,23 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
     @override
     Widget build(BuildContext context) {
         super.build(context);
-        return new Column(
-            children: <Widget>[
-                new NavigationHeader("懒人易健"),
-                Expanded(
-                    child: RefreshIndicator(
-                        child: new SingleChildScrollView(
-                            child: new Container(
-                                width: MediaQuery.of(context).size.width,
-                                child: new Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                        new HomeBanner(),
-                                        new ActionIcons(),
-                                        new Nearby(),
-                                        new Recommend()
-                                    ]),
-                            )),
-                        onRefresh: _onRefresh),
-                )
-            ],
+        return new PageLayout(
+            title: "懒人易健",
+            child: RefreshIndicator(
+                child: new SingleChildScrollView(
+                    child: new Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: new Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                                new HomeBanner(),
+                                new ActionIcons(),
+                                new Nearby(),
+                                new Recommend()
+                            ]),
+                    )),
+                onRefresh: _onRefresh
+            ),
         );
     }
 

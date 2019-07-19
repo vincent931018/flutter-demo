@@ -6,7 +6,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/display/navigationHeader.dart';
+import 'package:flutter_app/components/display/pageLayout.dart';
 
 class MyPage extends StatefulWidget {
     @override
@@ -21,14 +21,9 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
     @override
     Widget build(BuildContext context) {
         super.build(context);
-        return new Material(
-            child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                    new NavigationHeader("我的"),
-                    new Text("我的")
-                ],
-            ),
+        return new PageLayout(
+            title: "我的",
+            child: new Text("我的")
         );
     }
 

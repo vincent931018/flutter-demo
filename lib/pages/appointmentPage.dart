@@ -6,7 +6,7 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/display/navigationHeader.dart';
+import 'package:flutter_app/components/display/pageLayout.dart';
 
 class AppointmentPage extends StatefulWidget {
     @override
@@ -21,14 +21,9 @@ class _AppointmentPageState extends State<AppointmentPage> with AutomaticKeepAli
     @override
     Widget build(BuildContext context) {
         super.build(context);
-        return new Material(
-            child: new Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                    new NavigationHeader("课程"),
-                    new Text("课程")
-                ],
-            ),
+        return new PageLayout(
+            title: "预约",
+            child: new Text("预约")
         );
     }
 
